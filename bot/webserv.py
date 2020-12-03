@@ -1,8 +1,6 @@
-from aiohttp import web
-import asyncio
-import requests
-import os
 from subprocess import Popen
+import requests
+from aiohttp import web
 
 
 async def handle(request):
@@ -12,7 +10,7 @@ async def handle(request):
     print(param1)
     print(param2)
     result = "osuid: {}, disid: {}".format(param1, param2)
-    Popen(['python3 runauth.py -o' + param1 + " -d " + param2], shell=True) 
+    Popen(['/usr/bin/python3 /authbot/runauth.py -o' + param1 + " -d " + param2], shell=True) 
     return web.Response(text=str(result))
     exit()
 
@@ -22,4 +20,4 @@ app.add_routes([web.get('/', handle),
                 web.get('/{name}', handle)])
 
 if __name__ == '__main__':
-    web.run_app(app, port=5001)
+    web.run_app(app, port=5050)
